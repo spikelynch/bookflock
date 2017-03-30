@@ -289,10 +289,10 @@ var SCREEN_WIDTH = window.innerWidth,
     SCREEN_WIDTH_HALF = SCREEN_WIDTH  / 2,
     SCREEN_HEIGHT_HALF = SCREEN_HEIGHT / 2;
 
-var camera, scene, renderer,
-    birds, bird;
+var camera, scene, renderer, birds, bird;
 
 var boid, boids;
+var flock;
 
 var stats;
 
@@ -305,29 +305,14 @@ function init() {
     camera.position.z = 450;
     
     scene = new THREE.Scene();
-    
-    birds = [];
-    boids = [];
+
+    flock = {
+        birds: [],
+        boids: []
+    };
     
     for ( var i = 0; i < BOOKS.length; i ++ ) {
-        var kind = BOOKS[i].dd        //Math.random() * 1000;
-	boid = boids[ i ] = new Boid();
-	boid.position.x = Math.random() * 400 - 200;
-	boid.position.y = Math.random() * 400 - 200;
-	boid.position.z = Math.random() * 400 - 200;
-	boid.velocity.x = Math.random() * 2 - 1;
-	boid.velocity.y = Math.random() * 2 - 1;
-	boid.velocity.z = Math.random() * 2 - 1;
-        boid.kind = kind;
-	boid.setAvoidWalls( true );
-	boid.setWorldSize( 500, 500, 400 );
-        var c = new THREE.Color("#ff0000");
-        c.setHSL(kind * 0.001, 0.8, 0.5);
-	bird = birds[ i ] = new THREE.Mesh( new Bird(), new THREE.MeshBasicMaterial( { color: c, side: THREE.DoubleSide } ) );
-	bird.phase = Math.floor( Math.random() * 62.83 );
-	scene.add( bird );
-        
-        
+        add_bird(flock, scene, BOOKS[i].dd);        
     }
     
     renderer = new THREE.CanvasRenderer();
@@ -344,12 +329,41 @@ function init() {
     stats.domElement.style.top = '0px';
     
     document.getElementById( 'container' ).appendChild(stats.domElement);
-    
-    //
+   
     
     window.addEventListener( 'resize', onWindowResize, false );
     
 }
+
+
+function add_bird(flock, scene, dd) {
+
+    boid = new Boid();
+    boid.position.x = Math.random() * 400 - 200;
+    boid.position.y = Math.random() * 400 - 200;
+    boid.position.z = Math.random() * 400 - 200;
+    boid.velocity.x = Math.random() * 2 - 1;
+    boid.velocity.y = Math.random() * 2 - 1;
+    boid.velocity.z = Math.random() * 2 - 1;
+    boid.kind = dd;
+    boid.setAvoidWalls( true );
+    boid.setWorldSize( 500, 500, 400 );
+
+    flock.boids.push(boid);
+    
+    var c = new THREE.Color("#ff0000");
+    c.setHSL(boid.kind * 0.001, 0.8, 0.5);
+    bird = new THREE.Mesh(
+        new Bird(),
+        new THREE.MeshBasicMaterial( { color: c, side: THREE.DoubleSide } )
+    );
+    bird.phase = Math.floor( Math.random() * 62.83 );
+
+    flock.birds.push(bird);
+    scene.add( bird );
+}
+
+
 
 function onWindowResize() {
     
@@ -364,9 +378,9 @@ function onDocumentMouseMove( event ) {
     
     var vector = new THREE.Vector3( event.clientX - SCREEN_WIDTH_HALF, - event.clientY + SCREEN_HEIGHT_HALF, 0 );
     
-    for ( var i = 0, il = boids.length; i < il; i++ ) {
+    for ( var i = 0, il = flock.boids.length; i < il; i++ ) {
         
-	boid = boids[ i ];
+	boid = flock.boids[ i ];
         
 	vector.z = boid.position.z;
         
@@ -390,13 +404,13 @@ function animate() {
 
 function render() {
     
-    for ( var i = 0, il = birds.length; i < il; i++ ) {
+    for ( var i = 0, il = flock.birds.length; i < il; i++ ) {
         
-	boid = boids[ i ];
-	boid.run( boids );
+	boid = flock.boids[ i ];
+	boid.run( flock.boids );
         
-	bird = birds[ i ];
-	bird.position.copy( boids[ i ].position );
+	bird = flock.birds[ i ];
+	bird.position.copy( boid.position );
         
 //	color = bird.material.color;
 //        fog = ( 500 - bird.position.z ) / 1000;
