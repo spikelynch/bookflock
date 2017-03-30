@@ -4,36 +4,25 @@
 <title>three.js canvas - geometry - birds</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-<style>
-body {
-    color: #808080;
-    font-family:Monospace;
-    font-size:13px;
-    text-align:center;
-
-				background-color: #ffffff;
-				margin: 0px;
-				overflow: hidden;
-			}
-
-			#info {
-				position: absolute;
-				top: 0px; width: 100%;
-				padding: 5px;
-			}
-		</style>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div id="container"></div>
-<div id="info">book swarms</div>
+<div id="notes">
+  <p>Book flocks with live search</p>
+  <form name="search">
+  <input id="query" type="text" size="40"></input>
+  <input type="button" value="Search" onClick="do_search()" />
+</form>
+</div>
+
+<div id="progress"></div>
 
 <script src="js/three.min.js"></script>
 
 <script src="js/renderers/Projector.js"></script>
 <script src="js/renderers/CanvasRenderer.js"></script>
 
-<script src="js/stats.min.js"></script>
 
 <script src="js/Bird.js"></script>
 <script src="js/booklist.js"></script>

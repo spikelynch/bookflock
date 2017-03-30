@@ -1,0 +1,19 @@
+body {
+
+    background-color: #999999;
+    margin: 0px;
+    overflow: hidden;
+}
+
+canvas {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#notes {
+    position: absolute;
+    top: 10px;
+    left: 800px;
+    witdh: 200px;
+}

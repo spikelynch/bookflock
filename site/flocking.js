@@ -284,8 +284,8 @@ var vector = new THREE.Vector3(),
 }
 
     
-var SCREEN_WIDTH = window.innerWidth,
-    SCREEN_HEIGHT = window.innerHeight,
+var SCREEN_WIDTH = 720,
+    SCREEN_HEIGHT = 540,
     SCREEN_WIDTH_HALF = SCREEN_WIDTH  / 2,
     SCREEN_HEIGHT_HALF = SCREEN_HEIGHT / 2;
 
@@ -294,7 +294,6 @@ var camera, scene, renderer, birds, bird;
 var boid, boids;
 var flock;
 
-var stats;
 
 init();
 animate();
@@ -322,17 +321,6 @@ function init() {
     
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     document.body.appendChild( renderer.domElement );
-    
-    stats = new Stats();
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '0px';
-    stats.domElement.style.top = '0px';
-    
-    document.getElementById( 'container' ).appendChild(stats.domElement);
-   
-    
-    window.addEventListener( 'resize', onWindowResize, false );
-    
 }
 
 
@@ -365,14 +353,6 @@ function add_bird(flock, scene, dd) {
 
 
 
-function onWindowResize() {
-    
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    
-}
 
 function onDocumentMouseMove( event ) {
     
@@ -396,9 +376,7 @@ function animate() {
     
     requestAnimationFrame( animate );
     
-    stats.begin();
     render();
-    stats.end();
     
 }
 
@@ -432,4 +410,28 @@ function render() {
     renderer.render( scene, camera );
     
 }
+
+// live search
+
+function do_search(searchHandler) {
+    query = $("#query").val();
+    
+    results = [];
+    $("#searchresults").empty();
+    flock.birds = [];
+    flock.boids = [];
+    get_results(query, 0, function(results, count, total) {
+        $("#progress").empty();
+        $("#progress").text(count + "/" + total);
+        for( i = 0; i < count.length; i++ ) {
+            add_bird(flock, scene, results[i].dd);
+        }
+    }
+    );
+
+}
+
+
+
+
 
