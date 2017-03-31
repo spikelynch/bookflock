@@ -1,9 +1,8 @@
 // Library lookups
 
 
-//SEARCH_URL = "/bookmap" //local proxy to UTS libray catalogue search
+SEARCH_URL = "/bookmap" //local proxy to UTS libray catalogue search
 
-SEARCH_URL = "/"
 PAGE = 80
 MAX = 1000 
 
