@@ -41,7 +41,7 @@ function search_url(query, offset) {
         offset: offset,
         N: BOOK_TYPE
     }
-    var args = Object.keys(params).map(function(a) { return a + ":" + params[a] }).join("&");
+    var args = Object.keys(params).map(function(a) { return a + "=" + params[a] }).join("&");
     return SEARCH_URL + '?' + args;
 }
 
