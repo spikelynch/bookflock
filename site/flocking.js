@@ -323,11 +323,11 @@ function init() {
 
 
 function add_bird(flock, scene, dd) {
-
+    var r = 10;
     boid = new Boid();
-    boid.position.x = Math.random() * 400 - 200;
-    boid.position.y = Math.random() * 400 - 200;
-    boid.position.z = Math.random() * 400 - 200;
+    boid.position.x = Math.random() * 10 - 200;
+    boid.position.y = Math.random() * 10 - 200;
+    boid.position.z = Math.random() * 10 - 200;
     boid.velocity.x = Math.random() * 2 - 1;
     boid.velocity.y = Math.random() * 2 - 1;
     boid.velocity.z = Math.random() * 2 - 1;
@@ -409,14 +409,16 @@ function render() {
     
 }
 
-// live search
+// live search callbacks
 
 function reset_flock() {
+    for ( i = 0, il = flock.birds.length; i < il; i++ ) {
+        scene.remove(flock.birds[i]);
+    }
     flock = {
         birds: [],
         boids: []
     };
-    render();
 }
 
 function add_to_flock(dd) {
