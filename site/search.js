@@ -45,7 +45,7 @@ function get_results(query, offset, searchHandler) {
         }
         var docset = json.data.documentSet;
         var results = parse_docs(docset.docs);
-        var count = offset + docset.length;
+        var count = offset + docset.docs.length;
         console.log("Got page " + offset);
         searchHandler(results, count, docset.totalHits);
         if( count > MAX ) {
