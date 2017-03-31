@@ -36,8 +36,8 @@ function do_search() {
 
 function search_url(query, offset) {
     var params = {
-        q: query,
-//        limit: PAGE,
+        Ntt: query,
+        limit: PAGE,
         offset: offset,
         N: BOOK_TYPE
     }
