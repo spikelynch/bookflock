@@ -30,8 +30,8 @@
 
 
 <div id="notes">
-  <p>Book flocks with live search</p>
-  <form name="search">
+  <p>Book flocks with live search. Search results are capped at 4000.</p>
+  <form name="search" onsubmit="do_search()">
   <input id="query" type="text" size="40"></input>
   <input type="button" value="Search" onClick="do_search()" />
 </form>
