@@ -59,7 +59,8 @@ function get_results(query, offset, searchHandler) {
         var docset = json.data.documentSet;
         var results = parse_docs(docset.docs);
         var count = offset + docset.docs.length;
-        console.log("Got page " + offset);
+        console.log("offset = " + offset);
+        console.log("results = " + docset.docs.length);
         searchHandler(results, count, docset.totalHits);
         if( count > MAX ) {
             console.log("maxed out at " + MAX);
