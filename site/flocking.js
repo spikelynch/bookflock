@@ -411,7 +411,7 @@ function render() {
 
 // live search
 
-function do_search(searchHandler) {
+function do_search() {
     query = $("#query").val();
     
     results = [];
@@ -428,8 +428,6 @@ function do_search(searchHandler) {
     );
 
 }
-
-
 
 
 
