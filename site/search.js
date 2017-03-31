@@ -23,6 +23,7 @@ function do_search() {
         $("#progress").empty();
         $("#progress").text(count + "/" + total);
         for( i = 0; i < results.length; i++ ) {
+            console.log("Adding " + results[i].title);
             add_to_flock(results[i].dd);
         }
     }

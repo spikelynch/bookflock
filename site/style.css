@@ -17,3 +17,10 @@ canvas {
     left: 800px;
     witdh: 200px;
 }
+
+#progress {
+    position: absolute;
+    top: 400px;
+    left: 800px;
+    witdh: 200px;
+}
