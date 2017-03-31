@@ -4,7 +4,7 @@
 SEARCH_URL = "/bookmap" //local proxy to UTS libray catalogue search
 
 PAGE = 80
-MAX = 1000 
+MAX = 4000 
 
 var results = [];
 
