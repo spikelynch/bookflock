@@ -22,7 +22,7 @@ function do_search() {
     get_results(query, 0, function(results, count, total) {
         $("#progress").empty();
         $("#progress").text(count + "/" + total);
-        for( i = 0; i < count.length; i++ ) {
+        for( i = 0; i < results.length; i++ ) {
             add_to_flock(results[i].dd);
         }
     }
