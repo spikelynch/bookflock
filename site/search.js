@@ -14,12 +14,32 @@ var DD_RE = /^(\d+\.\d+)/;
 
 
 
+function do_search() {
+    query = $("#query").val();
+    
+    results = [];
+    $("#searchresults").empty();
+    reset_flock();
+    get_results(query, 0, function(results, count, total) {
+        $("#progress").empty();
+        $("#progress").text(count + "/" + total);
+        for( i = 0; i < count.length; i++ ) {
+            add_to_flock(results[i].dd);
+        }
+    }
+    );
+
+}
+
+
+
+
 function get_results(query, offset, searchHandler) {
     var url = SEARCH_URL + "?q=" + query + "&limit=" + PAGE + "&offset=" + offset;
     console.log("About to query search URL: " + url);
     d3.json(url, function(error, json) {
         if( error ) {
-            console.log("Error = " + error");
+            console.log("Error = " + error);
             return { error: error };
         }
         var docset = json.data.documentSet;

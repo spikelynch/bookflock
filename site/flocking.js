@@ -411,23 +411,19 @@ function render() {
 
 // live search
 
-function do_search() {
-    query = $("#query").val();
-    
-    results = [];
-    $("#searchresults").empty();
-    flock.birds = [];
-    flock.boids = [];
-    get_results(query, 0, function(results, count, total) {
-        $("#progress").empty();
-        $("#progress").text(count + "/" + total);
-        for( i = 0; i < count.length; i++ ) {
-            add_bird(flock, scene, results[i].dd);
-        }
-    }
-    );
-
+function reset_flock() {
+    flock = {
+        birds: [],
+        boids: []
+    };
+    render();
 }
+
+function add_to_flock(dd) {
+    add_bird(flock, scene, dd);
+}
+    
+
 
 
 
