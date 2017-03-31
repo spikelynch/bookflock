@@ -16,8 +16,10 @@ var DD_RE = /^(\d+\.\d+)/;
 
 function get_results(query, offset, searchHandler) {
     var url = SEARCH_URL + "?q=" + query + "&limit=" + PAGE + "&offset=" + offset;
+    console.log("About to query search URL: " + url);
     d3.json(url, function(error, json) {
         if( error ) {
+            console.log("Error = " + error");
             return { error: error };
         }
         var docset = json.data.documentSet;
