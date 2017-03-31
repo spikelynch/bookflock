@@ -17,7 +17,6 @@ var no_number = true;
 function do_search() {
     var query = $("#query").val();
     no_number = $("#nonumber").is(':checked');
-    console.log("Nonumber = " + no_number);
     results = [];
     $("#searchresults").empty();
     reset_flock();
