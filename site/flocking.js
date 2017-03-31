@@ -289,9 +289,9 @@ var SCREEN_WIDTH = 720,
     SCREEN_X_CENTER = SCREEN_WIDTH  / 2,
     SCREEN_Y_CENTER = SCREEN_HEIGHT / 2;
 
-var WORLD_X = 720,
-    WORLD_Y = 720,
-    WORLD_Z = 720,
+var WORLD_X = 540,
+    WORLD_Y = 540,
+    WORLD_Z = 540,
     WORLD_X_CENTER = WORLD_X / 2,
     WORLD_Y_CENTER = WORLD_Y / 2,
     WORLD_Z_CENTER = WORLD_Z / 2;
@@ -333,9 +333,9 @@ function init() {
 function add_bird(flock, scene, dd) {
     var r = 10;
     boid = new Boid();
-    boid.position.x = Math.random() * 10 - WORLD_X_CENTER;
-    boid.position.y = Math.random() * 10 - WORLD_Y_CENTER;
-    boid.position.z = Math.random() * 10 - WORLD_Z_CENTER;
+    boid.position.x = Math.random() * 100 - 50;
+    boid.position.y = Math.random() * 100 - 50;
+    boid.position.z = Math.random() * 100 - 50;
     boid.velocity.x = Math.random() * 2 - 1;
     boid.velocity.y = Math.random() * 2 - 1;
     boid.velocity.z = Math.random() * 2 - 1;
