@@ -3,8 +3,9 @@
 
 //SEARCH_URL = "/bookmap" //local proxy to UTS libray catalogue search
 
-SEARCH_URL = "http://localhost:8000"
-PAGE = 25
+SEARCH_URL = "/"
+PAGE = 80
+MAX = 1000 
 
 var results = [];
 
@@ -23,7 +24,9 @@ function get_results(query, offset, searchHandler) {
         var results = parse_docs(docset.docs);
         var count = offset + PAGE;
         searchHandler(results, count, docset.totalHits);
-        if( offset + PAGE < docset.totalHits ) {
+        if( offset + PAGE > MAX ) {
+            console.log("maxed out at " + MAX);
+        } else if( offset + PAGE < docset.totalHits ) {
             get_results(query, offset + PAGE, searchHandler);
         } else {
             console.log("Done");
