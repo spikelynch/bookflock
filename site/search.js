@@ -1,12 +1,12 @@
 // Library lookups
 
 
-SEARCH_URL = "/bookmap" //local proxy to UTS libray catalogue search
+var SEARCH_URL = "/bookmap"; //local proxy to UTS libray catalogue search
 
-var PAGE = 160
-var MAX = 4000 
+var PAGE = 200;
+var MAX = 4000;
 
-
+var BOOK_TYPE = '4294967266';
 
 
 var DD_RE = /^(\d+\.\d+)/;
@@ -34,10 +34,22 @@ function do_search() {
 }
 
 
+function search_url(query, offset) {
+    var params = {
+        q: query,
+        limit: PAGE,
+        offset: offset,
+        N: BOOK_TYPE
+    }
+    var args = Object.keys(params).map(function(a) { return a + ":" + params[a] }).join("&");
+    return SEARCH_URL + '?' + args;
+}
+
+
 
 
 function get_results(query, offset, searchHandler) {
-    var url = SEARCH_URL + "?q=" + query + "&limit=" + PAGE + "&offset=" + offset;
+    var url = search_url(query, offset);
     console.log("About to query search URL: " + url);
     d3.json(url, function(error, json) {
         if( error ) {
