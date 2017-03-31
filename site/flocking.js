@@ -344,6 +344,7 @@ function add_bird(flock, scene, dd) {
     } else {
         boid.kind = null;
     }
+    console.log(dd);
     boid.setAvoidWalls( true );
     boid.setWorldSize( WORLD_X, WORLD_Y, WORLD_Z );
 
