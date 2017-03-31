@@ -289,9 +289,9 @@ var SCREEN_WIDTH = 720,
     SCREEN_X_CENTER = SCREEN_WIDTH  / 2,
     SCREEN_Y_CENTER = SCREEN_HEIGHT / 2;
 
-var WORLD_X = 500,
-    WORLD_Y = 500,
-    WORLD_Z = 400,
+var WORLD_X = 720,
+    WORLD_Y = 720,
+    WORLD_Z = 720,
     WORLD_X_CENTER = WORLD_X / 2,
     WORLD_Y_CENTER = WORLD_Y / 2,
     WORLD_Z_CENTER = WORLD_Z / 2;
@@ -307,7 +307,7 @@ var flock;
 function init() {
     
     camera = new THREE.PerspectiveCamera( 75, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000 );
-    camera.position.z = 450;
+    camera.position.z = WORLD_Z + 50;
     
     scene = new THREE.Scene();
 
