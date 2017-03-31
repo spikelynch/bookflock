@@ -32,12 +32,14 @@
 <div id="notes">
   <p>Book flocks with live search. Search results are capped at 4000.</p>
   <form name="search" onsubmit="do_search(); return false;">
-  <input id="query" type="text" size="40"></input>
+  <input id="query" type="text" size="40"></input><br />
+  Include books with no call number
+  <input id="nonumber" name="nonumber" type="checkbox" checked /><br />
   <input type="button" value="Search" onClick="do_search()" />
 </form>
+<div id="progress"></div>
 </div>
 
-<div id="progress"></div>
 
 <script>
 init();

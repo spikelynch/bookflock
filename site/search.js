@@ -11,12 +11,13 @@ var BOOK_TYPE = '4294967266';
 
 var DD_RE = /^(\d+\.\d+)/;
 
-
+var no_number = true;
 
 
 function do_search() {
-    query = $("#query").val();
-    
+    var query = $("#query").val();
+    no_number = $("#nonumber").is(':checked');
+    console.log("Nonumber = " + no_number);
     results = [];
     $("#searchresults").empty();
     reset_flock();
@@ -79,11 +80,11 @@ function parse_docs(docs) {
     var results = [];
     for( var i = 0; i < docs.length; i++ ) {
         doc = docs[i];
-        if( is_book(doc) ) {
-            var r = doc.record;
-            var dd, title, authors;
-            dd_s = get_p(r, "p_CallNumber");
-            dd = parse_dd(dd_s);
+        var r = doc.record;
+        var dd, title, authors;
+        dd_s = get_p(r, "p_CallNumber");
+        dd = parse_dd(dd_s);
+        if( no_number || dd ) {
             title = get_p(r, "p_Title");
             authors = get_p(r, "p_TitleResponsibility");
             results.push({
