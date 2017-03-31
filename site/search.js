@@ -3,10 +3,11 @@
 
 SEARCH_URL = "/bookmap" //local proxy to UTS libray catalogue search
 
-PAGE = 80
-MAX = 4000 
+var PAGE = 160
+var MAX = 4000 
 
-var results = [];
+
+
 
 var DD_RE = /^(\d+\.\d+)/;
 

@@ -286,8 +286,16 @@ var vector = new THREE.Vector3(),
     
 var SCREEN_WIDTH = 720,
     SCREEN_HEIGHT = 540,
-    SCREEN_WIDTH_HALF = SCREEN_WIDTH  / 2,
-    SCREEN_HEIGHT_HALF = SCREEN_HEIGHT / 2;
+    SCREEN_X_CENTER = SCREEN_WIDTH  / 2,
+    SCREEN_Y_CENTER = SCREEN_HEIGHT / 2;
+
+var WORLD_X = 500,
+    WORLD_Y = 500,
+    WORLD_Z = 400,
+    WORLD_X_CENTER = WORLD_X / 2,
+    WORLD_Y_CENTER = WORLD_Y / 2,
+    WORLD_Z_CENTER = WORLD_Z / 2;
+    
 
 var camera, scene, renderer, birds, bird;
 
@@ -325,15 +333,15 @@ function init() {
 function add_bird(flock, scene, dd) {
     var r = 10;
     boid = new Boid();
-    boid.position.x = Math.random() * 10 - 200;
-    boid.position.y = Math.random() * 10 - 200;
-    boid.position.z = Math.random() * 10 - 200;
+    boid.position.x = Math.random() * 10 - WORLD_X_CENTER;
+    boid.position.y = Math.random() * 10 - WORLD_Y_CENTER;
+    boid.position.z = Math.random() * 10 - WORLD_Z_CENTER;
     boid.velocity.x = Math.random() * 2 - 1;
     boid.velocity.y = Math.random() * 2 - 1;
     boid.velocity.z = Math.random() * 2 - 1;
     boid.kind = dd;
     boid.setAvoidWalls( true );
-    boid.setWorldSize( 500, 500, 400 );
+    boid.setWorldSize( WORLD_X, WORLD_Y, WORLD_Z );
 
     flock.boids.push(boid);
     
@@ -353,8 +361,7 @@ function add_bird(flock, scene, dd) {
 
 
 function onDocumentMouseMove( event ) {
-    
-    var vector = new THREE.Vector3( event.clientX - SCREEN_WIDTH_HALF, - event.clientY + SCREEN_HEIGHT_HALF, 0 );
+    var vector = new THREE.Vector3( event.clientX - SCREEN_X_CENTER, - event.clientY + SCREEN_Y_CENTER, 0 );
     
     for ( var i = 0, il = flock.boids.length; i < il; i++ ) {
         
