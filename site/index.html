@@ -5,8 +5,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" href="style.css" />
+<script src="js/three.min.js"></script>
+
+<script src="js/renderers/Projector.js"></script>
+<script src="js/renderers/CanvasRenderer.js"></script>
+
+
+<script src="js/Bird.js"></script>
+<script src="js/booklist.js"></script>
+
+<script src="flocking.js"></script>
+<script src="search.js"></script>
 </head>
 <body>
+
 
 <div id="notes">
   <p>Book flocks with live search</p>
@@ -18,16 +30,11 @@
 
 <div id="progress"></div>
 
-<script src="js/three.min.js"></script>
+<script>
+init();
+animate();
+</script>
 
-<script src="js/renderers/Projector.js"></script>
-<script src="js/renderers/CanvasRenderer.js"></script>
-
-
-<script src="js/Bird.js"></script>
-<script src="js/booklist.js"></script>
-
-<script src="flocking.js"></script>
 
 </body>
 </html>

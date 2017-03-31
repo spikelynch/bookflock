@@ -295,8 +295,6 @@ var boid, boids;
 var flock;
 
 
-init();
-animate();
 
 function init() {
     
