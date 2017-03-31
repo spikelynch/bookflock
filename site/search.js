@@ -84,15 +84,13 @@ function parse_docs(docs) {
             var dd, title, authors;
             dd_s = get_p(r, "p_CallNumber");
             dd = parse_dd(dd_s);
-            if( dd ) {
-                title = get_p(r, "p_Title");
-                authors = get_p(r, "p_TitleResponsibility");
-                results.push({
-                    dd: dd,
-                    title: title,
-                    authors: authors
-                });
-            }
+            title = get_p(r, "p_Title");
+            authors = get_p(r, "p_TitleResponsibility");
+            results.push({
+                dd: dd,
+                title: title,
+                authors: authors
+            });
         }
     }
     return results;

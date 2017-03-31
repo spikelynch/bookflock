@@ -339,14 +339,23 @@ function add_bird(flock, scene, dd) {
     boid.velocity.x = Math.random() * 2 - 1;
     boid.velocity.y = Math.random() * 2 - 1;
     boid.velocity.z = Math.random() * 2 - 1;
-    boid.kind = dd;
+    if( dd ) {
+        boid.kind = dd;
+    } else {
+        boid.kind = null;
+    }
     boid.setAvoidWalls( true );
     boid.setWorldSize( WORLD_X, WORLD_Y, WORLD_Z );
 
     flock.boids.push(boid);
     
     var c = new THREE.Color("#ff0000");
-    c.setHSL(boid.kind * 0.001, 0.8, 0.5);
+    if( boid.kind ) {
+        c.setHSL(boid.kind * 0.001, 0.8, 0.5);
+    } else {
+        // if no dewey decimal number, gray
+        c.setHSL(0, 0, .7);
+    }
     bird = new THREE.Mesh(
         new Bird(),
         new THREE.MeshBasicMaterial( { color: c, side: THREE.DoubleSide } )
