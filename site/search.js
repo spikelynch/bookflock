@@ -3,7 +3,7 @@
 
 var SEARCH_URL = "/bookmap"; //local proxy to UTS libray catalogue search
 
-var PAGE = 200;
+var PAGE = 100;
 var MAX = 4000;
 
 var BOOK_TYPE = '4294967266';
@@ -37,7 +37,7 @@ function do_search() {
 function search_url(query, offset) {
     var params = {
         q: query,
-        limit: PAGE,
+//        limit: PAGE,
         offset: offset,
         N: BOOK_TYPE
     }
