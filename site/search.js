@@ -19,11 +19,12 @@ function do_search() {
     results = [];
     $("#searchresults").empty();
     reset_flock();
+    $("#progress").empty();
+    $("#progress").text("Searching...");    
     get_results(query, 0, function(results, count, total) {
         $("#progress").empty();
         $("#progress").text(count + "/" + total);
         for( i = 0; i < results.length; i++ ) {
-            console.log("Adding " + results[i].title);
             add_to_flock(results[i].dd);
         }
     }
@@ -44,12 +45,12 @@ function get_results(query, offset, searchHandler) {
         }
         var docset = json.data.documentSet;
         var results = parse_docs(docset.docs);
-        var count = offset + PAGE;
+        var count = offset + docset.length;
         console.log("Got page " + offset);
         searchHandler(results, count, docset.totalHits);
-        if( offset + PAGE > MAX ) {
+        if( count > MAX ) {
             console.log("maxed out at " + MAX);
-        } else if( offset + PAGE < docset.totalHits ) {
+        } else if( count < docset.totalHits ) {
             get_results(query, offset + PAGE, searchHandler);
         } else {
             console.log("Done");
